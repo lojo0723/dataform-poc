@@ -1,0 +1,23 @@
+config {
+  type: "table"
+}
+
+WITH a AS (
+    SELECT
+        status,
+        CAST(created_at AS DATE) created_at
+    FROM ${ref("orders")}
+)
+
+SELECT  
+    COUNT(*) ct_status_dt,
+    status,
+    created_at
+    -- ,shipped_at
+FROM a 
+GROUP BY
+  status,
+  created_at
+  -- ,shipped_at
+ORDER BY
+  created_at desc, status
