@@ -1,5 +1,14 @@
 config {
-  type: "table"
+  type: "incremental",
+  description: "This table is an example",
+         columns:{
+             ct_status_dt: "Count of records per status, per day",
+             status: "Order status",
+             created_at: "Day in which status is counted for"
+  },
+  assertions: {
+    uniqueKey: ["status", "created_at"]
+  }
 }
 
 WITH a AS (
